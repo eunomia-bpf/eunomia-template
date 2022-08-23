@@ -30,8 +30,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Get compile set
-        run: git clone https://github.com/eunomia-bpf/ebpm-bootstrap --recursive
+      name: Get compiler set
+      uses: actions/checkout@v3
+      with:
+        repository: https://github.com/eunomia-bpf/ebpm-bootstrap
+        submodules: true
 
       - name: build compile set
         run:  |

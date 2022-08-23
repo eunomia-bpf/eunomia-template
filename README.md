@@ -1,8 +1,17 @@
-# A template for eunomia-bpf compile toolchain
+# A template for eunomia-bpf programs
+
+This is a template for eunomia-bpf eBPF programs. You can use t as a template, compile it online with `Github Actions` or offline.
 
 ### Compile and run the eBPF code as simple as possible!
 
 Download the pre-compiled `ecli` binary from here: [eunomia-bpf/eunomia-bpf](https://github.com/eunomia-bpf/eunomia-bpf/releases)
+
+To install, just download and use the `ecli` binary from here: [eunomia-bpf/eunomia-bpf](https://github.com/eunomia-bpf/eunomia-bpf/releases):
+
+```console
+wget https://aka.pw/bpf-ecli -O ecli
+chmod +x ecli
+```
 
 ## use this repo as a github action to compile online
 
