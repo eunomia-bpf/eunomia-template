@@ -40,11 +40,11 @@ jobs:
 
       - name: Build compile set
         run: make install_deps && make
-        working-directify: ebpm-bootstrap
+        working-directory: ebpm-bootstrap
 
       - name: Build eBPF data
         run: make build
-        working-directify: ebpm-bootstrap
+        working-directory: ebpm-bootstrap
         env:
           SOURCE_DIR: ${{ github.workspace }}
 
