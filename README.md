@@ -1,6 +1,6 @@
 # A template for eunomia-bpf compile toolchain
 
-### Compile and run the ebpf code as simple as possible!
+### Compile and run the eBPF code as simple as possible!
 
 Download the pre-compiled `ecli` binary from here: [eunomia-bpf/eunomia-bpf](https://github.com/eunomia-bpf/eunomia-bpf/releases)
 
@@ -11,7 +11,7 @@ Download the pre-compiled `ecli` binary from here: [eunomia-bpf/eunomia-bpf](htt
 3. Run the `ecli` with remote url:
 
 ```console
-sudo ./ecli run sudo ./ecli run https://eunomia-bpf.github.io/ebpm-template/package.json
+$ sudo ./ecli run https://eunomia-bpf.github.io/ebpm-template/package.json
 ```
 
 ## quick start
@@ -19,7 +19,7 @@ sudo ./ecli run sudo ./ecli run https://eunomia-bpf.github.io/ebpm-template/pack
 just write some code in the `bootstrap.bpf.c`, after that, simply run this:
 
 ```console
-docker run -it -v /path/to/repo/:/src yunwei37/ebpm:latest # use absolute path
+$ docker run -it -v /path/to/repo/:/src yunwei37/ebpm:latest # use absolute path
 ```
 
 you will get a `package.json` in your root dir. Just run:
