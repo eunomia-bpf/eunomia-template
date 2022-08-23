@@ -30,19 +30,23 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
       - name: Get compiler set
         uses: actions/checkout@v3
         with:
+          path: ebpm-bootstrap
           repository: eunomia-bpf/ebpm-bootstrap
           submodules: true
 
-      - name: build compile set
-        run:  |
-              make -C ebpm-bootstrap install_deps
-              make -C ebpm-bootstrap
+      - name: Build compile set
+        run: make install_deps && make
+        working-directify: ebpm-bootstrap
 
-      - name: build eBPF data
-        run:  SOURCE_DIR=../ make -C ebpm-bootstrap build
+      - name: Build eBPF data
+        run: make build
+        working-directify: ebpm-bootstrap
+        env:
+          SOURCE_DIR: ${{ github.workspace }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v1
