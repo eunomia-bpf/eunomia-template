@@ -1,0 +1,53 @@
+# Simple workflow for deploying static content to GitHub Pages
+name: Generate compiled eBPF json data
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["master"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+# In that case do the job 'make_and_deploy_doxygen'
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Get compile set
+        run: git clone https://github.com/eunomia-bpf/ebpm-bootstrap --recursive
+
+      - name: build compile set
+        run:  |
+              make -C ebpm-bootstrap install_deps
+              make
+
+      - name: build eBPF data
+        run:  SOURCE_DIR=../ make -C ebpm-bootstrap build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v1
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          # Upload entire repository
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@main
