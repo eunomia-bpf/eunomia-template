@@ -4,7 +4,7 @@ name: Generate compiled eBPF json data
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: ["master"]
+    branches: ["master", "main"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -36,7 +36,7 @@ jobs:
       - name: build compile set
         run:  |
               make -C ebpm-bootstrap install_deps
-              make
+              make -C ebpm-bootstrap
 
       - name: build eBPF data
         run:  SOURCE_DIR=../ make -C ebpm-bootstrap build
