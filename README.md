@@ -25,5 +25,12 @@ see: [github.com/eunomia-bpf/eunomia-bpf](https://github.com/eunomia-bpf/eunomia
 
 for more examples, please see: [eunomia-bpf/eunomia-bpf/tree/master/bpftools/examples](https://github.com/eunomia-bpf/eunomia-bpf/tree/master/bpftools/examples)
 
-## use this repo as a github action
+## use this repo as a github action to compile online
 
+1. use this repo as a github template: see [creating-a-repository-from-a-template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)
+2. modify the `bootstrap.bpf.c`, commit it and wait for the workflow to stop
+3. Run the `ecli` with remote url:
+
+```console
+sudo ./ecli run 
+```
