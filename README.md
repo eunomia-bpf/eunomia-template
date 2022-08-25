@@ -9,8 +9,7 @@ Download the pre-compiled `ecli` binary from here: [eunomia-bpf/eunomia-bpf](htt
 To install, just download and use the `ecli` binary from here: [eunomia-bpf/eunomia-bpf](https://github.com/eunomia-bpf/eunomia-bpf/releases):
 
 ```console
-wget https://aka.pw/bpf-ecli -O ecli
-chmod +x ecli
+wget https://aka.pw/bpf-ecli -O ecli && chmod +x ecli
 ```
 
 ## use this repo as a github action to compile online
@@ -27,18 +26,23 @@ $ sudo ./ecli run https://eunomia-bpf.github.io/ebpm-template/package.json
 
 just write some code in the `bootstrap.bpf.c`, after that, simply run this:
 
-```console
-$ docker run -it -v /path/to/repo/:/src yunwei37/ebpm:latest # use absolute path
+```shell
+$ docker run -it -v /path/to/repo:/src yunwei37/ebpm:latest # use absolute path
 ```
 
 you will get a `package.json` in your root dir. Just run:
 
-```console
+```shell
 $ sudo ./ecli run package.json
 ```
 
 The ebpf compiled code can run on different kernel versions(CO-RE). You can just copied the json to another machine.
-see: [github.com/eunomia-bpf/eunomia-bpf](https://github.com/eunomia-bpf/eunomia-bpf) for details.
+see: [github.com/eunomia-bpf/eunomia-bpf](https://github.com/eunomia-bpf/eunomia-bpf) for the runtime, and [eunomia-bpf/eunomia-cc](https://github.com/eunomia-bpf/eunomia-cc) for our compiler tool chains.
+
+## The code here
+
+This is an example of ebpf code, we copied the bootstrap.bpf.c from [libbpf-bootstrap](https://github.com/libbpf/libbpf-bootstrap/tree/master/examples/c), without any modification. You can read their `README` for details: https://github.com/libbpf/libbpf-bootstrap
+
 
 ## more examples
 
