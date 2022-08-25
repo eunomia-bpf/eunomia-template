@@ -31,14 +31,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Get compile set
-        run: git clone https://github.com/eunomia-bpf/ebpm-bootstrap --recursive
+        run: git clone https://github.com/eunomia-bpf/eunomia-cc --recursive
 
       - name: build compile set
         run:  |
-              make -C ebpm-bootstrap install_deps
-              make -C ebpm-bootstrap
+              make -C eunomia-cc install_deps
+              make -C eunomia-cc
       - name: build eBPF data
-        run:  SOURCE_DIR=../ make -C ebpm-bootstrap build
+        run:  SOURCE_DIR=../ make -C eunomia-cc build
 
       - name: Setup Pages
         uses: actions/configure-pages@v1
@@ -46,7 +46,7 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload entire repository
-          path: './ebpm-bootstrap/.output'
+          path: './eunomia-cc/.output'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@main
