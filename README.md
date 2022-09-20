@@ -1,6 +1,6 @@
 # A template for eunomia-bpf programs
 
-This is a template for eunomia-bpf eBPF programs. You can use t as a template, compile it online with `Github Actions` or offline.
+This is a template for eunomia-bpf eBPF programs. You can use t as a template, compile it online with `Github Actions` or offline as a bootstrap template.
 
 ### Compile and run the eBPF code as simple as possible!
 
@@ -27,7 +27,7 @@ $ sudo ./ecli run https://eunomia-bpf.github.io/ebpm-template/package.json
 just write some code in the `bootstrap.bpf.c`, after that, simply run this:
 
 ```shell
-$ docker run -it -v /path/to/repo:/src yunwei37/ebpm:latest # use absolute path
+$ docker run -it -v ./:/src yunwei37/ebpm:latest # use absolute path
 ```
 
 you will get a `package.json` in your root dir. Just run:
@@ -43,7 +43,10 @@ see: [github.com/eunomia-bpf/eunomia-bpf](https://github.com/eunomia-bpf/eunomia
 
 This is an example of ebpf code, we copied the bootstrap.bpf.c from [libbpf-bootstrap](https://github.com/libbpf/libbpf-bootstrap/tree/master/examples/c), without any modification. You can read their `README` for details: https://github.com/libbpf/libbpf-bootstrap
 
-
 ## more examples
 
 for more examples, please see: [eunomia-bpf/eunomia-bpf/tree/master/bpftools/examples](https://github.com/eunomia-bpf/eunomia-bpf/tree/master/bpftools/examples)
+
+## detail documents
+
+For more documents, please refer to https://eunomia-bpf.github.io/
