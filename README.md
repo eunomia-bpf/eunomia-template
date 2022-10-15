@@ -1,3 +1,14 @@
+---
+layout: post
+title: template
+date: 2022-10-10 16:18
+category: examples
+author: yunwei37
+tags: [bpftools, examples, tracepoint, ringbuf]
+summary: A template for eunomia-bpf programs
+---
+
+
 # A template for eunomia-bpf programs
 
 This is a template for eunomia-bpf eBPF programs. You can use t as a template, compile it online with `Github Actions` or offline as a bootstrap template.
