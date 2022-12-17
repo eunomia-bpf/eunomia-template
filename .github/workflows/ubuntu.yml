@@ -31,14 +31,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Get compile set
-        run: git clone https://github.com/eunomia-bpf/eunomia-cc --recursive
-
-      - name: build compile set
         run:  |
-              make -C eunomia-cc install_deps
-              make -C eunomia-cc
-      - name: build eBPF data
-        run:  SOURCE_DIR=../ make -C eunomia-cc build
+              apt update
+	            apt-get install libcurl4-openssl-dev libelf-dev clang llvm cmake zlib1g-dev
+              wget https://github.com/eunomia-bpf/eunomia-bpf/releases/latest/download/eunomia.tar.gz
+              tar -xvf eunomia.tar.gz -C ~
+              ~/.eunomia/bin/ecc bootstrap.bpf.c bootstrap.bpf.h
 
       - name: Setup Pages
         uses: actions/configure-pages@v1
