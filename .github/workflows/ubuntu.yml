@@ -33,7 +33,7 @@ jobs:
       - name: Get compile set
         run:  |
               apt update
-	            apt-get install libcurl4-openssl-dev libelf-dev clang llvm cmake zlib1g-dev
+              apt-get install libcurl4-openssl-dev libelf-dev clang llvm cmake zlib1g-dev
               wget https://github.com/eunomia-bpf/eunomia-bpf/releases/latest/download/eunomia.tar.gz
               tar -xvf eunomia.tar.gz -C ~
               ~/.eunomia/bin/ecc bootstrap.bpf.c bootstrap.bpf.h
