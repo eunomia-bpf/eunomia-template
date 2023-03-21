@@ -1,36 +1,34 @@
----
-layout: post
-title: template
-date: 2022-10-10 16:18
-category: examples
-author: yunwei37
-tags: [bpftools, examples, tracepoint, ringbuf]
-summary: A template for eunomia-bpf programs
----
-
-
 # A template for eunomia-bpf programs
 
-This is a template for eunomia-bpf eBPF programs. You can use t as a template, compile it online with `Github Actions` or offline as a bootstrap template.
+This is a template for eunomia-bpf eBPF programs.
+You can use it as a template, compile it online with `Github Actions` or offline as a bootstrap template.
+
+### Use docker installed ecc and ecli
+
+Run the following code to access an environment with ecli and ecc,
+where you can easily compile and run or debug ebpf programs in this docker.
+
+```sh
+docker build -t eunomia-template .
+docker run -it eunomia-template:latest
+```
 
 ### Compile and run the eBPF code as simple as possible!
 
-Download the pre-compiled `ecli` binary from here: [eunomia-bpf/eunomia-bpf](https://github.com/eunomia-bpf/eunomia-bpf/releases)
+Download the pre-compiled `ecli` binary from here:
+[eunomia-bpf/eunomia-bpf](https://github.com/eunomia-bpf/eunomia-bpf/releases)
 
-To install, just download and use the `ecli` binary from here: [eunomia-bpf/eunomia-bpf](https://github.com/eunomia-bpf/eunomia-bpf/releases):
-
-```console
-wget https://aka.pw/bpf-ecli -O ecli && chmod +x ecli
-```
+To install, just download and use the `ecli` binary from here:
+[eunomia-bpf/eunomia-bpf](https://github.com/eunomia-bpf/eunomia-bpf/releases):
 
 ## use this repo as a github action to compile online
 
 1. use this repo as a github template: see [creating-a-repository-from-a-template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)
-2. modify the `bootstrap.bpf.c`, commit it and wait for the workflow to stop
+2. modify the `template.bpf.c`, commit it and wait for the workflow to stop
 3. Run the `ecli` with remote url:
 
 ```console
-$ sudo ./ecli run https://eunomia-bpf.github.io/ebpm-template/package.json
+$ sudo ./ecli run https://eunomia-bpf.github.io/eunomia-template/package.json
 ```
 
 ## quick start
