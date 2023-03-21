@@ -16,7 +16,7 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: Set latest release version
-      if:   github.event_name == 'push' && github.ref == 'refs/heads/master'
+      if:   github.event_name == 'push' && github.ref == 'refs/heads/main'
       id: set_version
       uses: actions/github-script@v6
       with:
@@ -58,7 +58,7 @@ jobs:
       run: ./ecc template.bpf.c template.h
 
     - name: Publish
-      if:   github.event_name == 'push' && github.ref == 'refs/heads/master'
+      if:   github.event_name == 'push' && github.ref == 'refs/heads/main'
       uses: softprops/action-gh-release@v1
       with:
           files: package.json
