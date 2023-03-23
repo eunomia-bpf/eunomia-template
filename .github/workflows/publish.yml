@@ -55,13 +55,15 @@ jobs:
         wget https://github.com/eunomia-bpf/eunomia-bpf/releases/latest/download/ecc && chmod +x ./ecc
 
     - name: build package
-      run: ./ecc template.bpf.c template.h
+      run: |
+        cd src
+        ../ecc template.bpf.c template.h
 
     - name: Publish
       if:   github.event_name == 'push' && github.ref == 'refs/heads/main'
       uses: softprops/action-gh-release@v1
       with:
-          files: package.json
+          files: src/package.json
           prerelease: false
           tag_name: ${{ steps.set_version.outputs.result }}
           generate_release_notes: true
