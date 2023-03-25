@@ -9,4 +9,8 @@ RUN chmod +x /root/.eunomia/bin/ecli
 
 ENV PATH="/root/.eunomia/bin:${PATH}"
 
-ENTRYPOINT ["/bin/bash"]
+RUN make build
+
+ENTRYPOINT ["ecli"]
+
+CMD ["run", "src/package.json"]
