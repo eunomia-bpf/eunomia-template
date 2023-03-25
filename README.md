@@ -1,61 +1,143 @@
-# A template for eunomia-bpf programs
+# **eunomia-template**
 
-This is a template for eunomia-bpf eBPF programs.
-You can use it as a template, compile it online with `Github Actions` or offline as a bootstrap template.
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
+[![Build and publish](https://github.com/eunomia-bpf/eunomia-template/actions/workflows/publish.yml/badge.svg)](https://github.com/eunomia-bpf/eunomia-template/actions/workflows/publish.yml)
+![GitHub stars](https://img.shields.io/github/stars/eunomia-bpf/eunomia-template?style=social)
 
-### Use docker installed ecc and ecli
+Welcome to the **`eunomia-template`**! This project template is designed to help you quickly start
+developing eBPF projects using eunomia-bpf in C. The template provides a solid starting point with a Makefile,
+Dockerfile, and GitHub action, along with all necessary dependencies to simplify your development process.
 
-Run the following code to access an environment with ecli and ecc,
-where you can easily compile and run or debug ebpf programs in this docker.
+借助于 GitHub 模板和 Github Codespace，可以轻松构建 eBPF 项目和开发环境，一键在线编译运行 eBPF 程序。关于中文的文档和详细的 eBPF 开发教程，可以参考：https://github.com/eunomia-bpf/bpf-developer-tutorial
 
-```sh
-docker build -t eunomia-template .
-docker run -it eunomia-template:latest
-```
+There are other templates for other languages:
 
-### Compile and run the eBPF code as simple as possible!
+- <https://github.com/eunomia-bpf/libbpf-template>: eBPF project template based on the C language and the libbpf framework.
+- <https://github.com/eunomia-bpf/cilium-ebpf-starter-template>: eBPF project template based on the Go language and the cilium/ebpf framework.
+- <https://github.com/eunomia-bpf/libbpf-rs-starter-template>: eBPF project template based on the Rust language and the libbpf-rs framework.
 
-Download the pre-compiled `ecli` binary from here:
-[eunomia-bpf/eunomia-bpf](https://github.com/eunomia-bpf/eunomia-bpf/releases)
+## **Getting Started**
 
-To install, just download and use the `ecli` binary from here:
-[eunomia-bpf/eunomia-bpf](https://github.com/eunomia-bpf/eunomia-bpf/releases):
+To get started, simply click the "Use this template" button on the GitHub repository page. This will create
+a new repository in your account with the same files and structure as this template.
 
-## use this repo as a github action to compile online
+### Use docker
 
-1. use this repo as a github template: see [creating-a-repository-from-a-template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)
-2. modify the `template.bpf.c`, commit it and wait for the workflow to stop
-3. Run the `ecli` with remote url:
+Run the following code to run the eBPF code from the cloud to your local machine in one line:
 
 ```console
-$ sudo ./ecli run https://eunomia-bpf.github.io/eunomia-template/package.json
+$ sudo docker run --rm -it --privileged ghcr.io/eunomia-bpf/eunomia-template:latest
+TIME     EVENT COMM             PID     PPID    FILENAME/EXIT CODE
+09:25:14 EXEC  sh               28142   1788    /bin/sh
+09:25:14 EXEC  playerctl        28142   1788    /nix/store/vf3rsb7j3p7zzyjpb0a3axl8yq4z1sq5-playerctl-2.4.1/bin/playerctl
+09:25:14 EXIT  playerctl        28142   1788    [1] (6ms)
+09:25:15 EXEC  sh               28145   1788    /bin/sh
+09:25:15 EXEC  playerctl        28145   1788    /nix/store/vf3rsb7j3p7zzyjpb0a3axl8yq4z1sq5-playerctl-2.4.1/bin/playerctl
+09:25:15 EXIT  playerctl        28145   1788    [1] (6ms)
 ```
 
-## quick start
+### Use Nix
 
-just write some code in the `bootstrap.bpf.c`, after that, simply run this:
+Using [direnv](https://github.com/direnv/direnv) and nix, you can quickly access a dev shell with a complete development environment.
 
-```shell
-$ docker run -it -v ./:/src yunwei37/ebpm:latest # use absolute path
+With direnv, you can automatically load the required dependencies when you enter the directory.
+This way you don't have to worry about installing dependencies to break your other project development environment.
+
+See how to install direnv and Nix:
+- direnv: https://github.com/direnv/direnv/blob/master/docs/installation.md
+- Nix: run
+```
+sh <(curl -L https://nixos.org/nix/install) --daemon
 ```
 
-you will get a `package.json` in your root dir. Just run:
+Then use the following command to enable direnv support in this directory.
 
-```shell
-$ sudo ./ecli run package.json
+```sh
+direnv allow
 ```
 
-The ebpf compiled code can run on different kernel versions(CO-RE). You can just copied the json to another machine.
-see: [github.com/eunomia-bpf/eunomia-bpf](https://github.com/eunomia-bpf/eunomia-bpf) for the runtime, and [eunomia-bpf/eunomia-cc](https://github.com/eunomia-bpf/eunomia-cc) for our compiler tool chains.
+If you want use nix flake without direnv, simply run:
 
-## The code here
+```sh
+nix develop
+```
 
-This is an example of ebpf code, we copied the bootstrap.bpf.c from [libbpf-bootstrap](https://github.com/libbpf/libbpf-bootstrap/tree/master/examples/c), without any modification. You can read their `README` for details: https://github.com/libbpf/libbpf-bootstrap
+## **Features**
 
-## more examples
+This starter template includes the following features:
 
-for more examples, please see: [eunomia-bpf/eunomia-bpf/tree/master/bpftools/examples](https://github.com/eunomia-bpf/eunomia-bpf/tree/master/bpftools/examples)
+- A **`Makefile`** that allows you to build the project in one command
+- A **`Dockerfile`** to create a containerized environment for your project
+- A **`flake.nix`** to enter a dev shell with needed dependencies
+- A GitHub action to automate your build and publish process
+  and docker image
+- All necessary dependencies for C development with eunomia-bpf
 
+## **How to use**
+
+### **1. Create a new repository using this template**
+
+Click the "Use this template" button on the GitHub repository page to create a new repository based on this template.
+
+### **2. Clone your new repository**
+
+Clone your newly created repository to your local machine:
+
+```sh
+git clone https://github.com/your_username/your_new_repository.git
+```
+
+### **3. Install dependencies**
+
+For dependencies, it varies from distribution to distribution. You can refer to shell.nix and dockerfile for installation.
+
+On Ubuntu, you may run `make install` or
+
+```sh
+sudo apt-get install -y --no-install-recommends \
+        libelf1 libelf-dev zlib1g-dev \
+        make clang llvm
+```
+
+to install dependencies.
+
+### **4. Build the project**
+
+To build the project, run the following command:
+
+```sh
+make build
+```
+
+This will compile your code and create the necessary binaries. You can you the `Github Code space` or `Github Action` to build the project as well.
+
+### ***Run the Project***
+
+You can run the binary with:
+
+```console
+ecli run src/package.json
+```
+
+Or with Github Packages locally:
+
+```console
+docker run --rm -it --privileged -v $(pwd):/examples ghcr.io/eunomia-bpf/eunomia-template:latest
+```
+
+### **7. GitHub Actions**
+
+This template also includes a GitHub action that will automatically build and publish your project when you push to the repository.
+To customize this action, edit the **`.github/workflows/publish.yml`** file.
+
+## **Contributing**
+
+We welcome contributions to improve this template! If you have any ideas or suggestions,
+feel free to create an issue or submit a pull request.
+
+## **License**
+
+This project is licensed under the MIT License. See the **[LICENSE](LICENSE)** file for more information.
 ## detail documents
 
 For more documents, please refer to https://eunomia-bpf.github.io/
